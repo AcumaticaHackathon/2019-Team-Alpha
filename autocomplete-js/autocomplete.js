@@ -1,5 +1,5 @@
 var htmlSearchFieldId = 'tags';
-var wsName = 'https://6477a310-8568-4479-b535-225a4d52f46c.mock.pstmn.io/suggest';
+var wsName = 'https://872b4588-ae63-47b4-abf6-fea58ff0508e.mock.pstmn.io/suggest';
 var delimiter = ' ';
 var responseDelimiter = '\n';
 
@@ -297,28 +297,20 @@ $( function() {
         source: function( request, response ) {
           // delegate back to autocomplete, but extract the last term
           
-		  var spaceRegex = new RegExp(' ', 'g');
-		  var words = request.term.split(' ').join('%20');
+		  var responseList = [];
+		  var terms = request.term.split(' ');
+		  var partial = terms.pop();
+		  var words = terms.join('%20');
+		  
+		  console.log(terms);
+		  console.log(partial);
 		  console.log(words);
 		  
-		  var url = wsName + '?words=' + words;
-			
-		  /*
-		  var lookupDataset = [];
-		  var position = currentPosition(words);
 		  
-		  console.log('Position: ' + position);
-		  
-		  if(position == 1)
-				lookupDataset = customerLookup;
-		  else if(position == 3)
-				lookupDataset = shipViaLookup;
-		  else if((position - 3) % 3 == 1)
-				lookupDataset = inventoryLookup;
-		  */
-		  
-			var responseList = [];
-			
+			  var url = wsName + '?words=' + words;
+				
+			  
+				
 			$.ajax({
 				url:	url,
 				async:	false,
@@ -326,7 +318,11 @@ $( function() {
 				contentType: 'text;charset=UTF-8',
 			})
 			.done(function(data) {
+				
 				responseList = data.split(' ');
+				responseList = $.grep(responseList, function(v) {
+					return v.toLowerCase().includes(partial.toLowerCase());
+				});
 			})
 			.fail(function (xhr, ajaxOptions, thrownError) {
 				alert('An Error Occurred!');
@@ -339,8 +335,20 @@ $( function() {
           return false;
         },
         select: function( event, ui ) {
-		  this.value += ' ' + ui.item.value;
+			//this.value += ' ' + ui.item.value;
+			
+			var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( delimiter );
           return false;
+          
+		  
+		  return false;
         }
       });
   } );
