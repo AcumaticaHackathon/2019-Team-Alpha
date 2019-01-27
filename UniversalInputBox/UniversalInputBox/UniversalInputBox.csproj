@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SalesOrderFilter.cs" />
+    <Compile Include="SalesOrderLineModel.cs" />
+    <Compile Include="SalesOrderModel.cs" />
     <Compile Include="SoOrderEntryExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
