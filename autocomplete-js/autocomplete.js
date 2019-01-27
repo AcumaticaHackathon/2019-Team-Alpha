@@ -1,5 +1,5 @@
 var htmlSearchFieldId = 'tags';
-var wsName = 'http://10823a04.ngrok.io/suggest';
+var wsName = 'http://56c9dd40.ngrok.io/suggest';
 var delimiter = ' ';
 var responseDelimiter = '\n';
 
