@@ -119,7 +119,7 @@
         <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
             var htmlSearchFieldId = 'ctl00_phF_searchRequestFilterForm_CstPXTextEdit4';
-            var wsName = 'http://10823a04.ngrok.io/suggest';
+            var wsName = 'http://56c9dd40.ngrok.io/suggest';
             var delimiter = ' ';
             var responseDelimiter = '\n';
             
