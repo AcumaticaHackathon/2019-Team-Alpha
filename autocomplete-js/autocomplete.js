@@ -9,13 +9,7 @@ $( function() {
 	  var re = new RegExp(delimiter, "g");
       return val.split( re );
     }
-    function extractLast( term ) {
-      return split( term ).pop();
-    }
-	function currentPosition( val ) {
-		return split(val).length;
-	}
-	function textFieldValue() {
+    function textFieldValue() {
 		return $( "#" + htmlSearchFieldId ).val();
 	}
 	
@@ -84,11 +78,17 @@ $( function() {
           terms.pop();
           // add the selected item
           terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
           this.value = terms.join( delimiter );
+		  
+		  // Bring up the autocomplete automatically
+		  $("#" + htmlSearchFieldId).trigger("keydown");
 		  
 		  return false;
         }
       });
 	  
 	  fetchHints([]);
+	  $("#" + htmlSearchFieldId).trigger("keydown");
   } );
