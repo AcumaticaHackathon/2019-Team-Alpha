@@ -171,7 +171,7 @@
 				  })
 				  .autocomplete({
 					minLength: 0,
-					delay: 750,
+					/*delay: 750,*/
 					source: function( request, response ) {
 					  // delegate back to autocomplete, but extract the last term
 					  
