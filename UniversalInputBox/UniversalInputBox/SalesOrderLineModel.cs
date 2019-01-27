@@ -2,7 +2,7 @@
 {
     public class SalesOrderLineModel
     {
-        public string InventoryItemId
+        public string InventoryItemCd
         {
             get;
             set;

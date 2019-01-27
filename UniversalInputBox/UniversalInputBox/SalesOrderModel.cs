@@ -22,10 +22,10 @@ namespace UniversalInputBox
             set;
         }
 
-        public IEnumerable<SalesOrderLineModel> LineItems
+        public List<SalesOrderLineModel> LineItems
         {
             get;
             set;
-        }
+        } = new List<SalesOrderLineModel>();
     }
 }
